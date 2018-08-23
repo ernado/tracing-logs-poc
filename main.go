@@ -64,22 +64,21 @@ func processBooking(ctx context.Context, bookingID int64) {
 
 Output:
 
-2018-08-24T01:06:58.781+0300    INFO    logging enabled:
-2018-08-24T01:06:58.781+0300    INFO    process start   {"request_id": "00001885154"}
-2018-08-24T01:06:58.781+0300    DEBUG   process.auth    token valid     {"request_id": "00001885154"}
-2018-08-24T01:06:58.781+0300    INFO    process.booking processed       {"request_id": "00001885154", "user_id": 124, "booking_id": 9002}
-2018-08-24T01:06:58.781+0300    INFO    process start   {"request_id": "00009872658"}
-2018-08-24T01:06:58.781+0300    WARN    process.auth    token invalid   {"request_id": "00009872658"}
-2018-08-24T01:06:58.781+0300    WARN    process auth failed; returning  {"request_id": "00009872658"}
-2018-08-24T01:06:58.781+0300    INFO    <logging disabled>
-2018-08-24T01:06:58.781+0300    INFO    </logging disabled>
-{"level":"info","ts":1535062018.7818227,"caller":"tracing-logs/main.go:89","msg":"production"}
-{"level":"info","ts":1535062018.7819042,"logger":"process","caller":"tracing-logs/main.go:49","msg":"start","request_id":"00001885154"}
-{"level":"info","ts":1535062018.7819734,"logger":"process.booking","caller":"tracing-logs/main.go:60","msg":"processed","request_id":"00001885154","user_id":124,"booking_id":9002}
-{"level":"info","ts":1535062018.7820442,"logger":"process","caller":"tracing-logs/main.go:49","msg":"start","request_id":"00009872658"}
-{"level":"warn","ts":1535062018.782083,"logger":"process.auth","caller":"tracing-logs/main.go:40","msg":"token invalid","request_id":"00009872658"}
-{"level":"warn","ts":1535062018.7821379,"logger":"process","caller":"tracing-logs/main.go:52","msg":"auth failed; returning","request_id":"00009872658"}
-
+2018-08-24T01:17:29.510+0300    INFO    logging enabled:
+2018-08-24T01:17:29.510+0300    INFO    process start   {"request_id": "00001885154"}
+2018-08-24T01:17:29.510+0300    DEBUG   process.auth    token valid     {"request_id": "00001885154"}
+2018-08-24T01:17:29.510+0300    INFO    process.booking processed       {"request_id": "00001885154", "user_id": 124, "booking_id": 9002}
+2018-08-24T01:17:29.510+0300    INFO    process start   {"request_id": "00009872658"}
+2018-08-24T01:17:29.510+0300    WARN    process.auth    token invalid   {"request_id": "00009872658"}
+2018-08-24T01:17:29.510+0300    WARN    process auth failed     {"request_id": "00009872658", "error": "not authorised"}
+2018-08-24T01:17:29.510+0300    INFO    <logging disabled>
+2018-08-24T01:17:29.510+0300    INFO    </logging disabled>
+{"level":"info","ts":1535062649.5108862,"caller":"tracing-logs/main.go:109","msg":"production"}
+{"level":"info","ts":1535062649.510898,"logger":"process","caller":"tracing-logs/main.go:49","msg":"start","request_id":"00001885154"}
+{"level":"info","ts":1535062649.5109055,"logger":"process.booking","caller":"tracing-logs/main.go:60","msg":"processed","request_id":"00001885154","user_id":124,"booking_id":9002}
+{"level":"info","ts":1535062649.510914,"logger":"process","caller":"tracing-logs/main.go:49","msg":"start","request_id":"00009872658"}
+{"level":"warn","ts":1535062649.5109177,"logger":"process.auth","caller":"tracing-logs/main.go:40","msg":"token invalid","request_id":"00009872658"}
+{"level":"warn","ts":1535062649.510923,"logger":"process","caller":"tracing-logs/main.go:52","msg":"auth failed","request_id":"00009872658","error":"not authorised"}
 */
 func main() {
 	cfg := zap.NewDevelopmentConfig()

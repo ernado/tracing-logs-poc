@@ -49,7 +49,7 @@ func process(ctx context.Context, requestID, token string) {
 	fromCtx(ctx).Info("start")
 	authCtx, authErr := auth(ctx, token)
 	if authErr != nil {
-		fromCtx(ctx).Warn("auth failed; returning")
+		fromCtx(ctx).Warn("auth failed", zap.Error(authErr))
 		return
 	}
 	processBooking(authCtx, 9002)

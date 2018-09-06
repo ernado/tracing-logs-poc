@@ -66,19 +66,13 @@ Output:
 
 {"level":"info","msg":"logging enabled"}
 {"level":"info","logger":"process","msg":"start","request_id":"00001885154"}
-{"level":"info","ts":1536224417.8312197,"caller":"tracing-logs/main.go:103","msg":"production"}
 {"level":"debug","logger":"process.auth","msg":"token valid","request_id":"00001885154"}
-{"level":"info","ts":1536224417.8312333,"logger":"process","caller":"tracing-logs/main.go:49","msg":"start","request_id":"00001885154"}
 {"level":"info","logger":"process.booking","msg":"processed","request_id":"00001885154","user_id":124,"booking_id":9002}
 {"level":"info","logger":"process","msg":"start","request_id":"00009872658"}
 {"level":"warn","logger":"process.auth","msg":"token invalid","request_id":"00009872658"}
 {"level":"warn","logger":"process","msg":"auth failed","request_id":"00009872658","error":"not authorised"}
 {"level":"info","msg":"<logging disabled>"}
 {"level":"info","msg":"</logging disabled>"}
-{"level":"info","ts":1536224417.8312402,"logger":"process.booking","caller":"tracing-logs/main.go:60","msg":"processed","request_id":"00001885154","user_id":124,"booking_id":9002}
-{"level":"info","ts":1536224417.8312478,"logger":"process","caller":"tracing-logs/main.go:49","msg":"start","request_id":"00009872658"}
-{"level":"warn","ts":1536224417.831251,"logger":"process.auth","caller":"tracing-logs/main.go:40","msg":"token invalid","request_id":"00009872658"}
-{"level":"warn","ts":1536224417.8312564,"logger":"process","caller":"tracing-logs/main.go:52","msg":"auth failed","request_id":"00009872658","error":"not authorised"}
 */
 func main() {
 	l := zap.NewExample()

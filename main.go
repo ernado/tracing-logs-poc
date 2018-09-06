@@ -64,32 +64,26 @@ func processBooking(ctx context.Context, bookingID int64) {
 
 Output:
 
-2018-08-24T01:17:29.510+0300    INFO    logging enabled:
-2018-08-24T01:17:29.510+0300    INFO    process start   {"request_id": "00001885154"}
-2018-08-24T01:17:29.510+0300    DEBUG   process.auth    token valid     {"request_id": "00001885154"}
-2018-08-24T01:17:29.510+0300    INFO    process.booking processed       {"request_id": "00001885154", "user_id": 124, "booking_id": 9002}
-2018-08-24T01:17:29.510+0300    INFO    process start   {"request_id": "00009872658"}
-2018-08-24T01:17:29.510+0300    WARN    process.auth    token invalid   {"request_id": "00009872658"}
-2018-08-24T01:17:29.510+0300    WARN    process auth failed     {"request_id": "00009872658", "error": "not authorised"}
-2018-08-24T01:17:29.510+0300    INFO    <logging disabled>
-2018-08-24T01:17:29.510+0300    INFO    </logging disabled>
-{"level":"info","ts":1535062649.5108862,"caller":"tracing-logs/main.go:109","msg":"production"}
-{"level":"info","ts":1535062649.510898,"logger":"process","caller":"tracing-logs/main.go:49","msg":"start","request_id":"00001885154"}
-{"level":"info","ts":1535062649.5109055,"logger":"process.booking","caller":"tracing-logs/main.go:60","msg":"processed","request_id":"00001885154","user_id":124,"booking_id":9002}
-{"level":"info","ts":1535062649.510914,"logger":"process","caller":"tracing-logs/main.go:49","msg":"start","request_id":"00009872658"}
-{"level":"warn","ts":1535062649.5109177,"logger":"process.auth","caller":"tracing-logs/main.go:40","msg":"token invalid","request_id":"00009872658"}
-{"level":"warn","ts":1535062649.510923,"logger":"process","caller":"tracing-logs/main.go:52","msg":"auth failed","request_id":"00009872658","error":"not authorised"}
+{"level":"info","msg":"logging enabled"}
+{"level":"info","logger":"process","msg":"start","request_id":"00001885154"}
+{"level":"info","ts":1536224417.8312197,"caller":"tracing-logs/main.go:103","msg":"production"}
+{"level":"debug","logger":"process.auth","msg":"token valid","request_id":"00001885154"}
+{"level":"info","ts":1536224417.8312333,"logger":"process","caller":"tracing-logs/main.go:49","msg":"start","request_id":"00001885154"}
+{"level":"info","logger":"process.booking","msg":"processed","request_id":"00001885154","user_id":124,"booking_id":9002}
+{"level":"info","logger":"process","msg":"start","request_id":"00009872658"}
+{"level":"warn","logger":"process.auth","msg":"token invalid","request_id":"00009872658"}
+{"level":"warn","logger":"process","msg":"auth failed","request_id":"00009872658","error":"not authorised"}
+{"level":"info","msg":"<logging disabled>"}
+{"level":"info","msg":"</logging disabled>"}
+{"level":"info","ts":1536224417.8312402,"logger":"process.booking","caller":"tracing-logs/main.go:60","msg":"processed","request_id":"00001885154","user_id":124,"booking_id":9002}
+{"level":"info","ts":1536224417.8312478,"logger":"process","caller":"tracing-logs/main.go:49","msg":"start","request_id":"00009872658"}
+{"level":"warn","ts":1536224417.831251,"logger":"process.auth","caller":"tracing-logs/main.go:40","msg":"token invalid","request_id":"00009872658"}
+{"level":"warn","ts":1536224417.8312564,"logger":"process","caller":"tracing-logs/main.go:52","msg":"auth failed","request_id":"00009872658","error":"not authorised"}
 */
 func main() {
-	cfg := zap.NewDevelopmentConfig()
-	cfg.DisableStacktrace = true
-	cfg.DisableCaller = true
-	l, err := cfg.Build()
-	if err != nil {
-		panic(err)
-	}
+	l := zap.NewExample()
 	ctx := withZap(context.Background(), l)
-	l.Info("logging enabled:")
+	l.Info("logging enabled")
 	process(ctx, "00001885154", "valid")
 	process(ctx, "00009872658", "invalid")
 
@@ -98,15 +92,4 @@ func main() {
 	process(ctx, "00001885154", "valid")
 	process(ctx, "00009872658", "invalid")
 	l.Info("</logging disabled>")
-
-	// The "production" logger.
-	cfg = zap.NewProductionConfig()
-	cfg.DisableStacktrace = true
-	if l, err = cfg.Build(); err != nil {
-		panic(err)
-	}
-	l.Info("production")
-	ctx = withZap(context.Background(), l)
-	process(ctx, "00001885154", "valid")
-	process(ctx, "00009872658", "invalid")
 }
